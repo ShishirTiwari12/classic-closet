@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wishlist</title>
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/wishlist.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+
+</head>
+<body>
+
+    <%- include('partials/header') %>
+    <% console.log(products) %>
+    <h2 style="text-align: center;margin-top: 10px;">Wishlist</h2>
+      <main>
+        <% if(products.length==0){ %>
+            <div style="font-size:1.8rem;">your wishlist collection is empty.</div>
+       <% } else { %>
+        <div class="product-container">
+
+            
+            
+            <%  products.forEach( product =>{ %>
+                    <div class="product" id="<%= product._id %>">
+                        <div class="content">
+                            <img   src= <%= product.imageurl %>  alt="">
+                            <h3 id="productName"> <%=product.productName %></h3>
+                            <p id="description"> <%= product.description %></p>
+                            <h4 class="price"> Rs. <%= product.price %></h4>
+                        </div>
+                        <div class="buttons">
+                            <button class="remove-from-wishlist">Remove</button>
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="buy-now">Buy Now</button>
+                        </div>
+                    </div>
+               <%  }) %>
+            </div>
+               <% } %>
+
+      </main>
+      <!-- <%- include('partials/footer') %> -->
+      <script src="/js/buyNow.js"></script>
+      <script>
+        const removeButtons= document.querySelectorAll('.remove-from-wishlist');
+        const cartButtons = document.querySelectorAll('.add-to-cart');
+
+        for(let x of removeButtons){
+            x.addEventListener('click',removeItem);
+        }
+
+        for(let x of cartButtons){
+            x.addEventListener('click',addToCart);
+        }
+
+        async function removeItem(e){
+            const target = e.target;
+            const id = target.parentElement.parentElement.id;
+            
+            try{
+                const response = await fetch(`http://localhost:3000/wishlist/remove/${id}`);
+                const data = await response.json();
+                if(data.message = 'successful'){
+                    window.location.href = '/wishlist';
+                }
+
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+
+        async function addToCart(e){
+            const target = e.target;
+            const id = target.parentElement.parentElement.id;
+
+            try{
+                const response = await fetch(`http://localhost:3000/cart/add/${id}`);
+                const data = response.json();
+                if(data.message = 'successful'){
+                    console.log("item successfully added to cart");
+                }
+                else{
+                    alert("failed to add item to cart list");
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+      </script>
+</body>
+
+</html>

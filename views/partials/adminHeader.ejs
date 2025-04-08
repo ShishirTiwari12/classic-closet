@@ -1,0 +1,88 @@
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  header{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 100px;
+    background-color:rgb(63, 56, 56);
+    box-shadow: 0px 5px 15px rgb(0,0,0,0.3);
+    padding: 20px;
+  }
+  
+  a{
+    flex-grow: 1;
+    text-decoration: none;
+  }
+  
+  .menu p{
+    color:rgb(238, 230, 230);
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  header>a{
+    color: white;
+  }
+  
+  .menu{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .menuItem:hover{
+    color: lightblue;
+    transform: scale(1.08);
+    transition: color 0.3s, transform 0.3s;
+  }
+  button{
+    background-color: yellow;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight:  bold;
+  }
+    
+  button:hover{
+    background-color: orange;
+    transform:scale(1.06);
+    transition: transform 0.2s, background-color 0.2s;
+    cursor: pointer;
+  }
+</style>
+<header>
+    <a href="/admin"><h2>CLASSICCLOSET</h2></a>
+    <div class="menu">
+        <a href="/admin"><p class="menuItem">Home</p></a>
+        <a href="/admin/add" ><p class="menuItem" id="add">Add</p></a>
+        <p class="menuItem" style="color: orangered;" id="logout">Log out</p>
+    </div>
+</header>
+
+<script>
+  const logoutButton = document.getElementById('logout');
+  logoutButton.addEventListener('click',logout);
+
+  async function logout(e){
+    console.log('logout button clicked');
+             try{
+              const response =await fetch('http://localhost:3000/user/logout');
+              console.log(response);
+              if(!response.ok){
+                  throw new Error ("response is not ok!!");
+              }
+              const data =await response.json();
+              window.location.href=data.location;
+            }
+            catch(err){
+                console.log("error while fetching logout route");
+            }
+  }
+</script>

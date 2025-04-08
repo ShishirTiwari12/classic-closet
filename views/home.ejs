@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClassicCloset</title>
+    <link rel="stylesheet" href="/styles/home.css" />
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+  </head>
+
+  <body>
+    <%- include('partials/header') %>
+
+    <main>
+      <section id="categories">
+        <h2>Product Categories</h2>
+
+        <!-- Men's Clothing -->
+         <div class="category-container">
+
+
+        <h3 class="category-heading">Men's Clothes</h3>
+        <div class="product-row ">
+          <div class="category  men top">
+        
+              <img src="/images/mensTopWear.jpg" class="men top" alt="Men's Product 1" />
+              <h4 class="men top">Top Wears</h4>
+
+          </div>
+
+          <div class="category men bottom">
+           
+              <img
+                src="/images/mensBottomWear.jpg"
+                class="men bottom"
+                alt="Men's Product 2"
+              />
+              <h4 class="men bottom">Bottom Wears</h4>
+          </div>
+
+          <div class="category men shoe">
+
+            <img src="/images/mensShoes.jpg" class="men shoe" alt="Men's Product 3" />
+            <h4 class="men shoe">shoes</h4>
+
+          </div>
+        </div>
+
+        <!-- Women's Clothing -->
+        <h3 class="category-heading">Women's Clothes</h3>
+        <div class="product-row ">
+          <div class="category  women top">
+
+              <img
+                src="/images/womensTopWear.jpg"
+                class="women top"
+                alt="Women's topwear"
+              />
+              <h4 class="women top">Top wears</h4>
+
+          </div>
+
+          <div class="category women bottom">
+
+              <img
+                src="/images/womensBottomWear.jpg"
+                class="women bottom"
+                alt="Women's Product 2"
+              />
+              <h4 class="women bottom">Bottom wears</h4>
+
+          </div>
+
+          <div class="category women shoe">
+
+              <img
+                src="/images/womensShoes.jpg"
+                class="women shoe"
+                alt="Women's Product 3"
+              />
+              <h4 class="women shoe">Shoes</h4>
+
+          </div>
+        </div>
+
+        <!-- Children's Clothing -->
+        <h3 class="category-heading child">Babies Clothes</h3>
+        <div class="product-row">
+          <div class="category child top">
+
+              <img
+                src="/images/babiesTopWear.jpg"
+                class="child top"
+                alt="Children's Product 1"
+              />
+              <h4 class="child top">Top wears</h4>
+
+          </div>
+
+          <div class="category child bottom">
+
+              <img
+                src="/images/babiesBottomWear.jpg"
+                class="child bottom"
+                alt="Children's Product 2"
+              />
+              <h4 class="child bottom">Bottom wears</h4>
+
+          </div>
+
+          <div class="category child shoe">
+
+              <img
+                src="/images/babiesShoes.jpg"
+                class="child shoe"
+                alt="Children's Product 3"
+              />
+              <h4 class="child shoe">shoes</h4>
+
+          </div>
+        </div>
+        </div>
+      </section>
+    </main>
+    <%- include('partials/footer') %>
+    <script>
+      const categoryContainer=document.querySelector('.category-container');
+      console.log(categoryContainer);
+      categoryContainer.addEventListener('click',getProducts);
+
+      //function to redirect to products page based on category
+      async function getProducts(e) {
+        const target =e.target;
+        let targetAudience,category;
+        console.log(target);
+
+        if(target==this){
+          return ;
+        }
+        else if(target.classList.contains('product-row')){
+          return;
+        }
+        if(target.classList.contains('men')){
+          targetAudience='men';
+        }
+        else if(target.classList.contains('women')){
+          targetAudience='women';
+        }
+        else{
+          targetAudience='child';
+        }
+
+        if(target.classList.contains('top')){
+          category='top';
+        }
+        else if(target.classList.contains('bottom')){
+          category='bottom';
+        }
+        else{
+          category='shoe';
+        }
+        
+        console.log(targetAudience,category);
+         
+         window.location.href=`/products?targetAudience=${targetAudience}&category=${category}`;
+      }
+    </script>
+  </body>
+</html>

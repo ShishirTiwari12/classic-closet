@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <link rel="stylesheet" href="/styles/products.css">
+    <style>
+    .buttons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 5px;
+    }
+
+
+    button{
+        padding: 8px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius:10px ;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .update{
+        background-color:  rgb(30, 144, 255);
+    }
+
+    .update:hover{
+        background-color: rgb(0, 102, 204);
+    /* color: rgb(236, 234, 234); */
+    }
+
+    .remove{
+        background-color:  rgb(255, 165, 0);
+    }
+
+    .remove:hover{
+     background-color: rgb(230, 140, 0);
+    /* color: rgb(236, 234, 234); */
+    }
+    </style>
+</head>
+<body>
+    <%- include('partials/adminHeader') %>
+
+    <main>
+        <div class="product-container">
+            
+            <%  products.forEach( product =>{ %>
+                    <div class="product" id="<%= product._id %>">
+                        <div class="content">
+                            <img   src= <%= product.imageurl %>  alt="">
+                            <h3 id="productName"> <%=product.productName %></h3>
+                            <p id="description"> <%= product.description %></p>
+                            <h4 id="price"> Rs. <%= product.price %></h4>
+                        </div>
+                        <div class="buttons">
+                            <button class="update">Update</button>
+                            <button class="remove">Remove</button>
+                        </div>
+                    </div>
+               <%  }) %>
+        </div>
+      </main>
+      <script>
+        const updateButtons = document.querySelectorAll('.update');
+        const removeButtons = document.querySelectorAll('.remove');
+
+        for(let x of updateButtons){
+            x.addEventListener('click',update);
+        }
+
+        for(let y of removeButtons){
+            y.addEventListener('click',remove);
+        }
+
+        function update(e){
+            const id = e.target.parentElement.parentElement.id;
+            console.log(id);
+            window.location.href = `/admin/update/${id}`;
+        }
+
+        async function remove(e){
+            const id= e.target.parentElement.parentElement.id;
+            console.log(id);
+            await fetch(`/admin/delete/${id}`,{
+                method : 'DELETE',
+            })
+            window.location.href='/admin';
+        }
+
+      </script>
+</body>
+</html>

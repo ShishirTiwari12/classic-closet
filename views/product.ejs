@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products</title>
+    <link rel="stylesheet" href="/styles/product.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    <!-- <% console.log(product._id) %> -->
+      <main>
+        <div class="product-container product" id='<%= product._id.toString() %>'>
+          <img src=<%= product.imageurl %> alt="">
+          <div class="product-content">
+            <h2 class="product-name"><%= product.productName %></h2>
+            <p class="description"><%= product.description %></p>
+            <h3 class="price">Rs. <%= product.price %></h3>
+            <div class="buttons " >
+              <button class="wishlist">Add to Wishlist</button>
+              <button class="cart">Add to Cart</button>
+              <button class="buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <%- include('partials/footer') %>
+      <script src="/js/buyNow.js"></script>
+      <script>
+        const productContainer=document.querySelector('.product-container');
+        const wishlistButton=document.querySelector('.wishlist');
+        const cartButton = document.querySelector('.cart');
+        cartButton.addEventListener('click',addToCart)
+        wishlistButton.addEventListener('click',addToWishlist);
+
+        async function addToWishlist(e) {
+          const target=e.target;
+          const id =productContainer.id;
+          try{
+            const response = await fetch(`http://localhost:3000/wishlist/add/${id}`);
+            const data = await response.json();
+            if(data.message=='successful'){
+              console.log("item successfully aadded to wishlist");
+            }
+            else{
+              console.log("failed to add item to wishlist list");
+            }
+          }
+          catch(err){
+            console.log(err);
+          }
+        }
+
+        async function addToCart(e){
+          const target = e.target;
+          const id = productContainer.id;
+          try{
+            const response = await fetch(`http://localhost:3000/cart/add/${id}`);
+            const data = await response.json();
+            if(data.message = 'successful'){
+              console.log("item successfully added to cart list ");
+            }
+            else {
+              console.log("failed to add item to cart list");
+            }
+          }
+          catch(err){
+            console.log(err);
+          }
+        }
+
+      </script>
+</body>
+
+</html>

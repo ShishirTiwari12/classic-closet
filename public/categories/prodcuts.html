@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .order-card {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .order-header {
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .order-status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 8px;
+        }
+        .completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .processing {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .shipped {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        .cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .order-date-total {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .order-content {
+            padding: 15px;
+        }
+        .product-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .product-item:last-child {
+            border-bottom: none;
+        }
+        .product-image {
+            width: 50px;
+            height: 50px;
+            background-color: #eee;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        .product-details {
+            flex: 1;
+        }
+        .product-name {
+            font-weight: 500;
+        }
+        .product-qty {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 3px;
+        }
+        .product-price {
+            font-weight: bold;
+            min-width: 70px;
+            text-align: right;
+        }
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Orders</h1>
+        
+        <!-- Order 1 -->
+        <div class="order-card">
+            <div class="order-header">
+                <div>
+                    <strong>Order #ORD-2025-001</strong>
+                    <span class="order-status completed">Completed</span>
+                </div>
+                <div class="order-date-total">
+                    March 28, 2025
+                </div>
+            </div>
+            <div class="order-content">
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">Wireless Headphones</div>
+                        <div class="product-qty">Qty: 1 × $89.99</div>
+                    </div>
+                    <div class="product-price">$89.99</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">Phone Case</div>
+                        <div class="product-qty">Qty: 2 × $19.99</div>
+                    </div>
+                    <div class="product-price">$39.98</div>
+                </div>
+                <div class="order-total">
+                    <span>Total</span>
+                    <span>$129.97</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Order 2 -->
+        <div class="order-card">
+            <div class="order-header">
+                <div>
+                    <strong>Order #ORD-2025-002</strong>
+                    <span class="order-status shipped">Shipped</span>
+                </div>
+                <div class="order-date-total">
+                    March 15, 2025
+                </div>
+            </div>
+            <div class="order-content">
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">Smart Watch</div>
+                        <div class="product-qty">Qty: 1 × $199.99</div>
+                    </div>
+                    <div class="product-price">$199.99</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">Watch Band</div>
+                        <div class="product-qty">Qty: 1 × $29.99</div>
+                    </div>
+                    <div class="product-price">$29.99</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">Screen Protector</div>
+                        <div class="product-qty">Qty: 2 × $9.99</div>
+                    </div>
+                    <div class="product-price">$19.98</div>
+                </div>
+                <div class="order-total">
+                    <span>Total</span>
+                    <span>$249.96</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Order 3 -->
+        <div class="order-card">
+            <div class="order-header">
+                <div>
+                    <strong>Order #ORD-2025-003</strong>
+                    <span class="order-status processing">Processing</span>
+                </div>
+                <div class="order-date-total">
+                    February 22, 2025
+                </div>
+            </div>
+            <div class="order-content">
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">Bluetooth Speaker</div>
+                        <div class="product-qty">Qty: 1 × $59.99</div>
+                    </div>
+                    <div class="product-price">$59.99</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">USB-C Cable</div>
+                        <div class="product-qty">Qty: 1 × $19.99</div>
+                    </div>
+                    <div class="product-price">$19.99</div>
+                </div>
+                <div class="order-total">
+                    <span>Total</span>
+                    <span>$79.98</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Order 4 -->
+        <div class="order-card">
+            <div class="order-header">
+                <div>
+                    <strong>Order #ORD-2025-004</strong>
+                    <span class="order-status cancelled">Cancelled</span>
+                </div>
+                <div class="order-date-total">
+                    January 5, 2025
+                </div>
+            </div>
+            <div class="order-content">
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">Wireless Earbuds</div>
+                        <div class="product-qty">Qty: 1 × $149.99</div>
+                    </div>
+                    <div class="product-price">$149.99</div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image"></div>
+                    <div class="product-details">
+                        <div class="product-name">Tablet Stand</div>
+                        <div class="product-qty">Qty: 1 × $24.99</div>
+                    </div>
+                    <div class="product-price">$24.99</div>
+                </div>
+                <div class="order-total">
+                    <span>Total</span>
+                    <span>$174.98</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

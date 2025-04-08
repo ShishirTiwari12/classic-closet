@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Update Product</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.6;
+  }
+  
+  h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  label {
+    display: block;
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: #f9f9fb;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15);
+    background-color: white;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  input[type="file"] {
+    width: 100%;
+    padding: 8px 0;
+    margin-bottom: 8px;
+  }
+  
+  button[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #2980b9;
+  }
+  
+  /* We need to keep the br tags but make the spacing consistent */
+  br {
+    display: block;
+    content: "";
+  }
+  
+  /* Hiding the second br of each pair for cleaner spacing */
+  br + br {
+    display: none;
+  }
+  
+  /* Custom file input styling */
+  input[type="file"] {
+    padding: 8px;
+    background-color: #f9f9fb;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Add some responsive styling */
+  @media (max-width: 600px) {
+    form {
+      padding: 20px;
+    }
+    
+    body {
+      padding: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+<h2>Update Product</h2>
+<% console.log(productId) %>
+<form action='/admin/update/<%= productId %>' method="POST" enctype="multipart/form-data">
+<label>Product Name:</label><br>
+<input type="text" name="productName" required><br><br>
+<label>Price:</label><br>
+<input type="number" name="price" required><br><br>
+<label>Category:</label><br>
+<select name="category">
+<option value="top">Top</option>
+<option value="bottom">Bottom</option>
+<option value="shoe">Shoe</option>
+</select><br><br>
+<label>Description:</label><br>
+<textarea name="description" rows="4" cols="30"></textarea><br><br>
+<label>Target Audience:</label><br>
+<select name="targetAudience">
+<option value="men">Men</option>
+<option value="women">Women</option>
+<option value="child">Child</option>
+</select><br><br>
+<label>Update Image (optional):</label><br>
+<input type="file" name="image"><br><br>
+<button type="submit">Update Product</button>
+</form>
+</body>
+</html>

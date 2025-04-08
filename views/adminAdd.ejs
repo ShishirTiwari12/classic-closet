@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>admin</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  }
+  
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  input[type="file"] {
+    padding: 10px 0;
+  }
+  
+  button[type="submit"] {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #3a7bc8;
+  }
+  
+  /* Custom file input styling */
+  input[type="file"] {
+    color: #555;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Custom dropdown styling */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+  
+  /* Add product title */
+  form::before {
+    content: "Add New Product";
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 16px;
+    display: block;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<form action="/admin/add" method="POST" enctype="multipart/form-data">
+<input type="text" name="productName" placeholder="Product Name" required>
+<input type="number" name="price" placeholder="Price" step="50" required>
+<!-- 🔻 Category Dropdown -->
+<select name="category" required>
+<option value="">-- Select Category --</option>
+<option value="top">Top</option>
+<option value="bottom">Bottom</option>
+<option value="shoe">Shoe</option>
+</select>
+<!-- 📝 Description Text -->
+<textarea name="description" placeholder="Product Description" required></textarea>
+<!-- 🎯 Target Audience Dropdown -->
+<select name="targetAudience" required>
+<option value="">-- Select Audience --</option>
+<option value="men">Men</option>
+<option value="women">Women</option>
+<option value="child">Child</option>
+</select>
+<!-- 📷 Image Upload -->
+<input type="file" name="image" accept="image/*" required>
+<button type="submit">Add Product</button>
+</form>
+</body>
+</html>
+  

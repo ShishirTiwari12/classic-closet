@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="styles/signup.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h3 style="text-align: center;">Create a new account</h3>
+            <form action="/user/signup" method="post">
+                <input type="text" placeholder="enter your name" name="username">
+                <input type="email" placeholder="enter email address" name="email">
+                <input type="password" placeholder="create password" name="password">
+                <button type="submit">Sign Up</button>
+                <a href="./auth.html">Already have an acount?</a>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

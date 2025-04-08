@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>authentication</title>
+    <link rel="stylesheet" href="styles/auth.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h3 style="text-align: center; margin-bottom:10px;">Login </h3>
+                <div id="form">
+                    <input type="email" placeholder="enter email here.." id="email" name="email">
+                    <input type="password" placeholder="enter password here" id="password" name="password">
+                    <button id="login" type="button">Log in</button>
+                    <a href="">forget password</a>
+                </div>
+        <a href="./signup.html" style="width: 100%; text-align: center;"><button id="newAccount"> create new account</button></a>
+        </div>
+    </main>
+    <script>
+        const email=document.getElementById('email');
+        const password=document.getElementById('password');
+        const loginButton=document.getElementById('login');
+        //function to send post request 
+        const submitData=async ()=>{
+            console.log("button clicked");
+            try{
+                const response= await fetch('http://localhost:3000/user/login',{
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify({email:email.value,password:password.value}),
+
+                });
+                if(!response.ok){
+                    throw new Error(`network error status code:: ${response.status}`);
+                }
+                const data=await response.json();
+                if(data){
+
+                    window.location.href=data.location;
+                }
+            }
+            catch(err){
+                console.error('err');
+            }
+        }
+
+        
+        loginButton.addEventListener('click',submitData);
+
+    </script>
+</body>
+</html>

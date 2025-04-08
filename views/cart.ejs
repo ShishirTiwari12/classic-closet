@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <link rel="stylesheet" href="/styles/cart.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <style>
+        .buy-all{
+            background-color: yellow;
+
+        }
+    </style>
+    
+</head>
+<body>
+
+    <%- include('partials/header') %>
+      <main>
+        <h2 class="total" style="text-align: center;">Total amount = <span style="color: blue;"> Rs.<%=totalAmount %></span></h2>
+        <button class="buy-all">Buy All</button>
+        <% if(products.length==0){ %>
+            <div style="font-size:1.8rem;">your cart is empty.</div>
+       <% } else { %>
+
+        <div class="product-container">
+
+
+            
+            <%  products.forEach( product =>{ %>
+                    <div class="product" id="<%= product._id %>">
+                        <div class="content">
+                            <img   src= <%= product.imageurl %>  alt="">
+                            <h3 id="productName"> <%=product.productName %></h3>
+                            <p id="description"> <%= product.description %></p>
+                            <h4 class="price"> Rs. <%= product.price %></h4>
+                        </div>
+                        <div class="buttons">
+                            <button class="add-to-wishlist">Add to Wishlist</button>
+                            <button class="remove-from-cart">Remove</button>
+                            <button class="buy-now">Buy Now</button> 
+
+                        </div>
+                    </div>
+               <%  }) %>
+            </div>
+               <% } %>
+
+      </main>
+
+      <script src="/js/buyNow.js"></script>
+      
+      <script>
+        const removeButtons = document.querySelectorAll('.remove-from-cart');
+        const wishlistButtons = document.querySelectorAll('.add-to-wishlist');
+        const products = document.querySelectorAll('.product');
+        const buyAllButton = document.querySelector('.buy-all');
+        const productIds=[];
+        products.forEach(product => {
+            productIds.push(product.id);
+        })
+        for(let x of removeButtons){
+            x.addEventListener('click',removeItem);
+        }
+
+        for(let x of wishlistButtons){
+            x.addEventListener('click',addItem);
+        }
+
+        buyAllButton.addEventListener('click',buyAll);
+
+        async function removeItem(e){
+            const target = e.target;
+            const id = target.parentElement.parentElement.id;
+            
+            try{
+                const response = await fetch(`http://localhost:3000/cart/remove/${id}`);
+                const data = await response.json();
+                if(data.message = 'successful'){
+                    window.location.href = '/cart';
+                }
+                else{
+                    alert("failed to remove item from cart");
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+
+        async function addItem(e) {
+            const target = e.target;
+            const id = target.parentElement.parentElement.id;
+            try{
+                const response = await fetch(`http://localhost:3000/wishlist/add/${id}`);
+                const data = await response.json();
+                if(data.message == 'successful'){
+                    console.log("item succesfully added to wishlist");
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+
+    async function buyAll(e){
+            try{
+                const response = await fetch(`/payment`,{
+                    method : 'POST',
+                    headers : {
+                        'Content-Type': 'application/json'
+                        },
+                    body: JSON.stringify({productIds:productIds})
+                });
+                 if(response.redirected){
+                window.location.href = response.url;
+                return;
+                }
+                const data = await response.text();
+                document.body.innerHTML= data;
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+      </script>
+</body>
+
+</html>

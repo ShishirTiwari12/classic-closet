@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+  
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.product-container{
+    width:60%;
+    height: 60%;
+    background-color: rgb(240, 238, 238);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 35px;
+    padding: 10px;
+    box-shadow: 5px 5px 2px rgb(22, 21, 21);
+}
+
+h2{
+    margin: 10px 5px;
+}
+
+.product-container:hover{
+    outline: 2px solid black;
+}
+
+img{
+    width: 40%;
+    height: 100%;
+    border-radius: 35px 0px 0px 35px;
+}
+
+.description{
+    margin: 5px;
+}
+
+.price{
+    margin-top: 45px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.product-content{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    border-radius: 0px 35px 35px 0px;
+    margin-left: 30px;
+}   
+
+
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 5px;
+}
+
+
+button{
+    padding: 8px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius:10px ;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.wishlist{
+    background-color:  rgb(30, 144, 255);
+}
+
+.wishlist:hover{
+    background-color: rgb(0, 102, 204);
+    /* color: rgb(236, 234, 234); */
+}
+
+.cart{
+   background-color:  rgb(255, 165, 0);
+}
+
+.cart:hover{
+    background-color: rgb(230, 140, 0);
+    /* color: rgb(236, 234, 234); */
+}
+
+.buy-now{
+    background-color: rgb(229, 57, 53);
+    /* color: white;
+    padding: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius:10px ;
+    cursor: pointer;
+    margin-right: 10px; */
+}
+
+.buy-now:hover{
+    background-color: rgb(200, 40, 40);
+    /* color:rgb(236, 234, 234); ; */
+}
+
+/* #signature{
+    display: none;
+} */
