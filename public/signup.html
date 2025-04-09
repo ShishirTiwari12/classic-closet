@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,14 +10,213 @@
     <main>
         <div class="container">
             <h3 style="text-align: center;">Create a new account</h3>
-            <form action="/user/signup" method="post">
+            <form action="/user/signup" method="post"onSubmit ="return validateForm()">
                 <input type="text" placeholder="enter your name" name="username">
-                <input type="email" placeholder="enter email address" name="email">
+                <input type="email" placeholder="enter email address" name="email" id="email">
                 <input type="password" placeholder="create password" name="password">
                 <button type="submit">Sign Up</button>
                 <a href="./auth.html">Already have an acount?</a>
             </form>
         </div>
     </main>
+</body>
+<script>
+  function validateForm() {
+    const email = document.getElementById('email').value;
+    if (!email.endsWith('@gmail.com')) {
+      alert('Only Gmail addresses allowed.');
+      return false; // ⛔ Stops form submission
+    }
+    return true; // ✅ Proceeds with form submission
+  }
+</script>
+</html>
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassicCloset Signup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 800px;
+            max-width: 95%;
+        }
+
+        .brand-section {
+            background-color: #ff7f50;
+            color: white;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .brand-section img {
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .form-section {
+            background-color: white;
+            padding: 40px;
+            width: 50%;
+        }
+
+        h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 12px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+
+        input:focus {
+            outline: 0;
+            border-color: #ff7f50;
+        }
+
+        .password-visibility {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            justify-content: flex-start;
+        }
+
+        .password-visibility input[type="checkbox"] {
+            margin: 0;
+        }
+
+        button {
+            width: 100%;
+            background-color: #2c8c2c;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background-color: #0e780e;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #ff7f50;
+        }
+
+        .login-link a {
+            text-decoration: none;
+            color: #ff7f50;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .brand-section, .form-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="/images/classiccloset-logo.png" alt="ClassicCloset Logo" class="header-logo">
+    <main>
+        <div class="container">
+            <div class="brand-section">
+               <img src="/images/personpointing (1).jpg" alt="">
+            </div>
+            <div class="form-section">
+                <h3>Signup</h3>
+                <form action="/user/signup" method="post">
+                    <input type="text" placeholder="Enter your name" name="username">
+                    <input type="email" placeholder="Email" name="email">
+                    <input type="password" placeholder="Password" name="password" id="myInput">
+                    
+                    <div class="password-visibility">
+                        <input type="checkbox" onclick="myFunction()" id="showPassword">
+                        <label for="showPassword">See Password</label>
+                    </div>
+                    
+                    <button type="submit">Signup</button>
+                    
+                    <div class="login-link">
+                        Already have an account? <a href="./auth.html">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function validateForm() {
+    const email = document.getElementById('email').value;
+    if (!email.endsWith('@gmail.com')) {
+      alert('Only Gmail addresses allowed.');
+      return false; // ⛔ Stops form submission
+    }
+    return true; // ✅ Proceeds with form submission
+  }
+    </script>
 </body>
 </html>

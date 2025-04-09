@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
                     <input type="email" placeholder="enter email here.." id="email" name="email">
                     <input type="password" placeholder="enter password here" id="password" name="password">
                     <button id="login" type="button">Log in</button>
-                    <a href="">forget password</a>
+                    <a href="/auth/forgot-password">forget password</a>
                 </div>
         <a href="./signup.html" style="width: 100%; text-align: center;"><button id="newAccount"> create new account</button></a>
         </div>
@@ -23,8 +23,10 @@
         const email=document.getElementById('email');
         const password=document.getElementById('password');
         const loginButton=document.getElementById('login');
+
         //function to send post request 
-        const submitData=async ()=>{
+        const submitData=async (e)=>{
+
             console.log("button clicked");
             try{
                 const response= await fetch('http://localhost:3000/user/login',{
@@ -52,6 +54,247 @@
         
         loginButton.addEventListener('click',submitData);
 
+    </script>
+</body>
+</html>
+  -->
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassicCloset Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            display: flex;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 800px;
+            max-width: 95%;
+        }
+
+        .brand-section {
+            background-color: rgba(240, 127, 80, 0.9);
+            color: white;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .brand-section img {
+            max-width: 100%;
+            height: 100%;
+        }
+
+
+        .form-section {
+            background-color: white;
+            padding: 40px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        #form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            padding: 12px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+
+        input:focus {
+            outline: 0;
+            border-color: #ff7f50;
+        }
+
+        .password-visibility {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            justify-content: flex-start;
+        }
+
+        .password-visibility input[type="checkbox"] {
+            margin: 0;
+            /* Prevent this from affecting layout */
+            flex-shrink: 0;
+        }
+        
+        /* Ensure password field maintains size when type changes */
+        #password {
+            min-width: 100%;
+            transition: none;
+        }
+
+        #login {
+            width: 100%;
+            background-color: #0866ff;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #login:hover {
+            background-color: #0755d9;
+        }
+
+        #form a {
+            text-decoration: none;
+            color: #0866ff;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        #newAccount {
+            background-color: #2c8c2c;
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #newAccount:hover {
+            background-color: #267726;
+        }
+
+        .signup-link {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .brand-section, .form-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="/images/classiccloset-logo.png" alt="">
+    <main>
+        <div class="container">
+            <div class="brand-section">
+                <img src="/images/personpointing (1).jpg" alt="">
+            </div>
+            <div class="form-section">
+                <h3>Login</h3>
+                <div id="form">
+                    <input type="email" placeholder="Email" id="email" name="email">
+                    <input type="password" placeholder="Password" id="password" name="password">
+                    
+                    <div class="password-visibility">
+                        <input type="checkbox" onclick="myFunction()" id="showPassword">
+                        <label for="showPassword">See Password</label>
+                    </div>
+                    
+                    <button id="login" type="button">Log in</button>
+                    <a href="/auth/forgot-password">Forgot password?</a>
+                </div>
+                <div class="signup-link">
+                    <a href="./signup.html" style="text-decoration: none;"><button id="newAccount">Create new account</button></a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const loginButton = document.getElementById('login');
+        
+        function myFunction() {
+            var x = document.getElementById("password");
+            // Save the current width before changing type
+            var width = x.offsetWidth;
+            
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            
+            // Ensure the width stays the same
+            x.style.width = width + "px";
+        }
+        
+        const submitData = async () => {
+            console.log("button clicked");
+            try {
+                const response = await fetch('http://localhost:3000/user/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({email: email.value, password: password.value}),
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`network error status code:: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (data) {
+                    window.location.href = data.location;
+                }
+            }
+            catch (err) {
+                console.error('err');
+            }
+        }
+        
+        loginButton.addEventListener('click', submitData);
     </script>
 </body>
 </html>

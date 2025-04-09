@@ -21,6 +21,16 @@ const userSchema =mongoose.Schema({
     cartItems:{
         type:[String],
     }
+    ,
+    verified : {
+        type: Boolean,
+        default:false,
+    },
+    resetPasswordToken: String,
+    resetPasswordExpires: { type: Date },
+    createdAt : { type : Date },
+
+
 })
 
 const User= mongoose.model('User',userSchema);

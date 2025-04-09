@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const Product = require('../models/product');
 const Order = require('../models/order');
+const {transporter} = require('../utils/mailer');
 
 let products=[];
 
@@ -30,6 +31,22 @@ const payment = async (req,res) =>{
     const signatureString = `total_amount=${totalAmount},transaction_uuid=${transactionUUID},product_code=${productCode}`;
     const signature = crypto.createHmac("sha256", secretKey).update(signatureString).digest("base64");
     initialSignature = signature;
+
+
+    const mailOptions2 = {
+        to: req.session.user.email,
+        from: process.env.EMAIL,
+        subject: 'order placed',
+        html: `
+        <p>your order has been placed </p>
+        <p>We the team of ClassicCloset are thankful to you for choosing us.</p>
+        <p>The order will take 2 to 3 days to reach you.</p>
+        `,
+        };
+    
+    await transporter.sendMail(mailOptions2);
+    
+
 
     res.send(`
         <html>
@@ -144,6 +161,20 @@ function generateTransactionUUID() {
 }
 
 const paymentSuccess = async (req,res) =>{
+
+    const mailOptions2 = {
+        to: req.session.user.email,
+        from: process.env.EMAIL,
+        subject: 'order placed',
+        html: `
+        <p>your order has been placed </p>
+        <p>We the team of ClassicCloset are thankful to you for choosing us.</p>
+        <p>The order will take 2 to 3 days to reach you.</p>
+        `,
+        };
+    
+    await transporter.sendMail(mailOptions2);
+
     const date = new Date(Date.now());
     const isoDate = date.toISOString();
     const formattedDate = isoDate.split('T')[0];
@@ -152,7 +183,7 @@ const paymentSuccess = async (req,res) =>{
     const decodedData = Buffer.from(data,'base64').toString('utf-8');
     const jsonData = JSON.parse(decodedData);
     await Order.create({userEmail : req.session.user.email, orderDate : formattedDate ,transactionId : jsonData.transaction_code,status : 'processing' , totalAmount : jsonData.total_amount, products : products});
-    return res.render('successfulPayment');
+    return res.render('successfulPayment',{orderDate : formattedDate});
 }
 
 const paymentFailed = (req,res) =>{

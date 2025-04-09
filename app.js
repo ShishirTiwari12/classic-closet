@@ -11,9 +11,11 @@ const paymentRoute = require('./routes/paymentRoute');
 const orderRoutes = require('./routes/orderRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const isAuthenticated = require('./middleware/isAuthenticated');
+const authRoutes = require('./routes/authRoutes');
 require('dotenv').config();
 const app = express();
 const port = 3000;
+const User = require('./models/user');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -51,6 +53,7 @@ app.use('/search',searchRoute);
 app.use('/payment', isAuthenticated,paymentRoute);  
 app.use('/order', isAuthenticated,orderRoutes);
 app.use('/admin',isAuthenticated ,adminRoutes);
+app.use('/auth',authRoutes);
 
 app.use(express.static('./public')); 
 
@@ -59,8 +62,10 @@ app.get('/',(req,res) => {
 })
 
 
-app.get('/profile',isAuthenticated,(req,res) => {  
-    res.render('profile');
+app.get('/profile',isAuthenticated, async (req,res) => {  
+    const user = await User.findOne({email:req.session.user.email});
+    console.log(user);
+    res.render('profile',{user:user});
 })
 
 const start = async() => {

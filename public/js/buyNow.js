@@ -7,7 +7,8 @@ for(let x of buyNow){
 
 
 async  function esewa(e){
-    let productIds=[product.id];
+    let productIds=[];
+    productIds.push(id);
     // console.log('button is clicked');
     // console.log(id);
     // console.log(product);

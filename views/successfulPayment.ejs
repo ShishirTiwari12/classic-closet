@@ -1,107 +1,121 @@
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Successful</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 600px;
-            padding: 40px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background-color: #4CAF50;
-            border-radius: 50%;
-            margin: 0 auto 25px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .checkmark {
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-        }
-        h1 {
-            color: #4CAF50;
-            margin-bottom: 15px;
-        }
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        .order-button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s;
-        }
-        .order-button:hover {
-            background-color: #3e8e41;
-        }
-        .order-details {
-            background-color: #f5f5f5;
-            border-radius: 6px;
-            padding: 20px;
-            margin-top: 30px;
-            text-align: left;
-        }
-        .order-details p {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-        .receipt-link {
-            color: #4CAF50;
-            text-decoration: none;
-            margin-top: 20px;
-            display: inline-block;
-            font-weight: bold;
-        }
-        .receipt-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful</title>
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #f9f9f9;
+color: #333;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+ }
+.container {
+max-width: 600px;
+padding: 40px;
+background-color: white;
+border-radius: 12px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+text-align: center;
+ }
+.success-icon {
+width: 80px;
+height: 80px;
+background-color: #4CAF50;
+border-radius: 50%;
+margin: 0 auto 25px auto;
+display: flex;
+justify-content: center;
+align-items: center;
+ }
+.checkmark {
+color: white;
+font-size: 40px;
+font-weight: bold;
+ }
+h1 {
+color: #4CAF50;
+margin-bottom: 15px;
+ }
+p {
+font-size: 18px;
+line-height: 1.6;
+margin-bottom: 30px;
+ }
+.email-note {
+background-color: #e8f5e9;
+border-radius: 6px;
+padding: 15px;
+margin-bottom: 30px;
+border-left: 4px solid #4CAF50;
+text-align: left;
+}
+.email-note p {
+font-size: 16px;
+margin: 0;
+}
+.order-button {
+background-color: #4CAF50;
+color: white;
+border: none;
+padding: 12px 24px;
+font-size: 16px;
+border-radius: 6px;
+cursor: pointer;
+text-decoration: none;
+display: inline-block;
+transition: background-color 0.3s;
+ }
+.order-button:hover {
+background-color: #3e8e41;
+ }
+.order-details {
+background-color: #f5f5f5;
+border-radius: 6px;
+padding: 20px;
+margin-top: 30px;
+text-align: left;
+ }
+.order-details p {
+font-size: 16px;
+margin: 10px 0;
+ }
+.receipt-link {
+color: #4CAF50;
+text-decoration: none;
+margin-top: 20px;
+display: inline-block;
+font-weight: bold;
+ }
+.receipt-link:hover {
+text-decoration: underline;
+ }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="success-icon">
-            <span class="checkmark">✓</span>
-        </div>
-        <h1>Payment Successful!</h1>
-        <p>Thank you for your purchase. Your transaction has been completed successfully and your order is being processed.</p>
-        
-        <a href="/order" class="order-button">View Your Order</a>
-        
-        <div class="order-details">
-            <p><strong>Order Number:</strong> <span id="orderNumber">ORD-12345678</span></p>
-            <p><strong>Date:</strong> <span id="orderDate">March 31, 2025</span></p>
-            <p><strong>Payment Method:</strong> <span id="paymentMethod">Esewa</span></p>
-        </div>
-        
-        <a href="/" class="receipt-link">click here to go to homepage</a>
-    </div>
+<div class="container">
+<div class="success-icon">
+<span class="checkmark">✓</span>
+</div>
+<h1>Payment Successful!</h1>
+<p>Thank you for your purchase. Your transaction has been completed successfully and your order is being processed.</p>
+
+<div class="email-note">
+<p><strong>Order Confirmation:</strong> We've sent a  order details to your email address. Please check your inbox.</p>
+</div>
+
+<a href="/order" class="order-button">View Your Order</a>
+<div class="order-details">
+<p><strong>Order Number:</strong> <span id="orderNumber">ORD-12345678</span></p>
+<p><strong>Date:</strong> <span id="orderDate"><%= orderDate %></span></p>
+<p><strong>Payment Method:</strong> <span id="paymentMethod">Esewa</span></p>
+</div>
+<a href="/" class="receipt-link">click here to go to homepage</a>
+</div>
 </body>
 </html>

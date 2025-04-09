@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,5 +30,152 @@
         })
         
     </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile</title>
+<link rel="stylesheet" href="/styles/header.css">
+<link rel="stylesheet" href="/styles/footer.css">
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+    
+    .profile-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    h1 {
+        font-size: 28px;
+        color: #2c3e50;
+        margin: 0;
+    }
+    
+    .profile-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .profile-section {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid #ff7f50;
+    }
+    
+    .profile-section h3 {
+        margin-top: 0;
+        color: #2c3e50;
+        font-size: 18px;
+    }
+    
+    .profile-section p {
+        color: #666;
+        margin-bottom: 5px;
+    }
+    
+    #logout {
+        background-color: #ff7f50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    #logout:hover {
+        background-color: #ff6b3d;
+    }
+    
+    .profile-actions {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .welcome-message {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+</style>
+</head>
+<body>
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>Your Profile</h1>
+        <button id="logout">Logout</button>
+    </div>
+    
+    <div class="welcome-message">
+        Welcome back! Here you can view and manage your profile information.
+    </div>
+    
+    <div class="profile-content">
+        <div class="profile-section">
+            <h3>Personal Information</h3>
+            <p><strong>Name:</strong><%= user.username %></p>
+            <p><strong>Email:</strong><%= user.email %></p>
+            <p><strong>Member since:</strong><%= user.createdAt %></p>
+        </div>
+        
+        <div class="profile-section">
+            <h3>Account Details</h3>
+            <p><strong>Status:</strong> Active</p>
+            <p><strong>Last login:</strong> Today</p>
+            <p><strong>Membership:</strong> Standard</p>
+        </div>
+        
+        <div class="profile-section">
+            <h3>Recent Activity</h3>
+            <p>No recent activity to display</p>
+        </div>
+    </div>
+</div>
+
+<script>
+const logoutButton=document.querySelector('#logout');
+logoutButton.addEventListener('click',async (e)=>{
+console.log("logout button clicked");
+try{
+const response =await fetch('http://localhost:3000/user/logout');
+console.log(response);
+if(!response.ok){
+throw new Error ("response is not ok!!");
+ }
+const data =await response.json();
+window.location.href=data.location;
+ }
+catch(err){
+console.log("error while fetching logout route");
+ }
+ })
+</script>
 </body>
 </html>

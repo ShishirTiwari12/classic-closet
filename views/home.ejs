@@ -13,6 +13,19 @@
     <%- include('partials/header') %>
 
     <main>
+        <!-- HERO BANNER SECTION -->
+  <section class="hero-banner">
+    <div class="hero-text">
+      <h1>Welcome to ClassicCloset</h1>
+      <p>Timeless Fashion. Modern Style.</p>
+      <a href="#shop" class="cta-button">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Placeholder for categories -->
+  <section id="shop" style="padding: 2rem; text-align: center;">
+    <h2>Product Categories Coming Soon...</h2>
+  </section>
       <section id="categories">
         <h2>Product Categories</h2>
 
@@ -165,6 +178,10 @@
          
          window.location.href=`/products?targetAudience=${targetAudience}&category=${category}`;
       }
+      document.querySelector('.cta-button').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('#shop').scrollIntoView({ behavior: 'smooth' });
+  });
     </script>
   </body>
 </html>
